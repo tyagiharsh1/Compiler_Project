@@ -193,6 +193,9 @@ class Lexer:
             elif self.current_char == '/':
                 tokens.append(Token(TT_DIV))
                 self.advance()
+            elif self.current_char == '%':
+                tokens.append(Token(TT_MOD))
+                self.advance()
             elif self.current_char == '(':
                 tokens.append(Token(TT_LPAREN))
                 self.advance()
@@ -216,6 +219,12 @@ class Lexer:
                 self.advance()    
             elif self.current_char == 'return':
                 tokens.append(Token(TT_RETURN))
+                self.advance()
+            elif self.current_char == 'Public':
+                tokens.append(Token(TT_PUBLIC))
+                self.advance()
+            elif self.current_char == 'Private':
+                tokens.append(Token(TT_PRIVATE))
                 self.advance()
             elif self.current_char == 'null':
                 tokens.append(Token(TT_NULL))
