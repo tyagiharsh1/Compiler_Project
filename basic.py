@@ -12,6 +12,7 @@ FRACTION_REGEX = re.compile(r'-?\d+/\d+')
 EVEN_A_REGEX = re.compile(r'^[b]*((a[ab]*){2})*$')
 ENDS_WITH_11_REGEX = re.compile(r'^.*11$')
 ODD_ZEROS_EVEN_ONES_REGEX = re.compile(r'^(00*1(11)*0)*1*$')
+########## Regular expression for identifier
 IDENTIFIER_REGEX = re.compile(r'^[a-zA-Z_]\w*$')
 DATE_REGEX = re.compile(r'^\d{4}-\d{2}-\d{2}$')
 
