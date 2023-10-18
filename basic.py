@@ -91,6 +91,7 @@ TT_FLOAT_CONST='FLOAT_CONST'
 TT_NEW='TT_NEW'
 TT_ASSIGN='ASSIGN'
 TT_GE='GE'
+TT_SM='SM'
 TT_ID='ID'
 TT_THIS='TT_THIS'
 TT_IF='IF'
@@ -106,8 +107,8 @@ TT_BIT_OR='BIT_OR'
 TT_BIT_XOR='BIT_XOR'
 TT_BIT_NOT='BIT-NOT'
 TT_STRING='BIT_STRING'
-TT_RSQUARE='RSQUARE'
-TT_LSQUARE='TT_LSQUARE'
+TT_RSHIFT='RSHIFT'
+TT_LSHIFT='TT_LSHIFT'
 TT_SINGLE_LINE_COMMENT='SINGLE_LINE_COMMENT'
 TT_MULTI_LINE_COMMENT='MULTI_LINE_COMMENT'
 TT_COMMA='COMMA'
@@ -197,6 +198,69 @@ class Lexer:
                 self.advance()
             elif self.current_char == ')':
                 tokens.append(Token(TT_RPAREN))
+                self.advance()
+            elif self.current_char == 'while':
+                tokens.append(Token(TT_WHILE))
+                self.advance()
+            elif self.current_char == 'else':
+                tokens.append(Token(TT_ELSE))
+                self.advance()
+            elif self.current_char == 'for':
+                tokens.append(Token(TT_FOR))
+                self.advance()
+            elif self.current_char == 'function':
+                tokens.append(Token(TT_FUNCTION))
+                self.advance()
+            elif self.current_char == 'static':
+                tokens.append(Token(TT_STATIC))
+                self.advance()    
+            elif self.current_char == 'return':
+                tokens.append(Token(TT_RETURN))
+                self.advance()
+            elif self.current_char == 'null':
+                tokens.append(Token(TT_NULL))
+                self.advance()  
+            elif self.current_char == '\\':
+                tokens.append(Token(TT_SINGLE_LINE_COMMENT))
+                self.advance()  
+            elif self.current_char == '\\*':
+                tokens.append(Token(TT_MULTI_LINE_COMMENT))
+                self.advance()
+            elif self.current_char == ',':
+                tokens.append(Token(TT_COMMA))
+                self.advance()
+            elif self.current_char == ';':
+                tokens.append(Token(TT_SEMICOLON))
+                self.advance()
+            elif self.current_char == '>':
+                tokens.append(Token(TT_GE))
+                self.advance()
+            elif self.current_char == '<':
+                tokens.append(Token(TT_SM))
+                self.advance()
+            elif self.current_char == '&':
+                tokens.append(Token(TT_BIT_AND))
+                self.advance()
+            elif self.current_char == '|':
+                tokens.append(Token(TT_BIT_OR))
+                self.advance()
+            elif self.current_char == '^':
+                tokens.append(Token(TT_BIT_XOR))
+                self.advance()
+            elif self.current_char == '~':
+                tokens.append(Token(TT_BIT_NOT))
+                self.advance()
+            elif self.current_char == '<<':
+                tokens.append(Token(TT_LSHIFT))
+                self.advance()
+            elif self.current_char == '>>':
+                tokens.append(Token(TT_RSHIFT))
+                self.advance()
+            elif self.current_char == 'New':
+                tokens.append(Token(TT_NEW))
+                self.advance()
+            elif self.current_char == 'Class':
+                tokens.append(Token(TT_CLASS))
                 self.advance()
             elif WORD_REGEX.match(self.current_char):  # Check if the current character is part of a word
                 tokens.append(self.make_word())  # Tokenize words
